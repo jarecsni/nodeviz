@@ -20,13 +20,14 @@ export class Node<T extends object> {
     private _componentRef:SvelteComponent;
     private _package:string;
     private _value:T;
+    private _id:string;
     private _handler: NodeHandler;
     private _children?:Node<T>[];
     private _parent?:Node<T>;
-    private _id = uuidv4();
-    constructor(pkg: string, value:T, handler:NodeHandler = defaultHandler) {
+    constructor(pkg: string, value:T, id:string = uuidv4(), handler:NodeHandler = defaultHandler) {
         this._package = pkg;
         this._value = value;
+        this._id = id;
         this._active = false;
         this._handler = handler;
     }
