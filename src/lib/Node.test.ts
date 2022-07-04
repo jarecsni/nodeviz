@@ -4,21 +4,21 @@ import type {NodeObj} from './Node';
 describe('Node', () => {
     it('transforms a single node', () => {
         const node:NodeObj = {
-            package: 'x',
+            widgetName: 'x',
             value: {}
         }
         const converted = convertJSON(node);
         expect(converted.children).toBeUndefined();
         expect(converted.parent).toBeUndefined();
-        expect(converted.type).toBe('x/Object');
+        expect(converted.widgetName).toBe('x');
     });
     it('sets the parent correctly', () => {
         const node:NodeObj = {
-            package: 'x',
+            widgetName: 'x',
             value: {
             },
             children: [{
-                package: 'x',
+                widgetName: 'x',
                 value: {
                     someValue: 1,
                     someFunction: () => (2)
@@ -31,14 +31,14 @@ describe('Node', () => {
     });
     it('sets works with nested children', () => {
         const node:NodeObj = {
-            package: 'x',
+            widgetName: 'x',
             value: {},
             children: [{
-                package: 'x',
+                widgetName: 'x',
                 value: {},
                 children: [
                     {
-                        package: 'x',
+                        widgetName: 'x',
                         value: {}
                     }
                 ]

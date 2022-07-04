@@ -2,7 +2,7 @@ import type {SvelteComponent} from 'svelte';
 import {v4 as uuidv4} from 'uuid';
 
 export type NodeObj = {
-    package: string,
+    widgetName: string,
     value: unknown,
     children?: NodeObj[]
 }
@@ -15,30 +15,34 @@ const defaultHandler = {
     isVisible: () => true
 }
 
+interface Args<T> {
+    widgetName: string
+    value: T
+    id?: string
+    handler?: NodeHandler
+}
+
 export class Node<T extends object> {
     private _active:boolean;
     private _componentRef:SvelteComponent;
-    private _package:string;
+    private _widgetName:string;
     private _value:T;
     private _id:string;
     private _handler: NodeHandler;
     private _children?:Node<T>[];
     private _parent?:Node<T>;
-    constructor(pkg: string, value:T, id:string = uuidv4(), handler:NodeHandler = defaultHandler) {
-        this._package = pkg;
-        this._value = value;
-        this._id = id;
+    constructor(options: Args<T>) {
+        this._widgetName = options.widgetName;
+        this._value = options.value;
+        this._id = options.id || uuidv4();
         this._active = false;
-        this._handler = handler;
+        this._handler = options.handler || defaultHandler;
     }
     get id() {
         return this._id;
     }
-    get package() {
-        return this._package;
-    }
-    get type() {
-        return this.package + '/' + this.value.constructor.name;
+    get widgetName() {
+        return this._widgetName;
     }
     get active() {
         return this._active;
@@ -80,7 +84,7 @@ export class Node<T extends object> {
 }
 
 export function convertJSON<T extends object>(json:NodeObj, parentNode?:Node<T>):Node<T> {
-    const currentNode = new Node<T>(json.package, json.value as T);
+    const currentNode = new Node<T>({widgetName: json.widgetName, value: json.value as T});
     currentNode.parent = parentNode;
     if (json.children && json.children.length > 0) {
         json.children.forEach(child => {
