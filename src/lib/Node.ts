@@ -31,12 +31,13 @@ export class Node<T extends object> {
     private _handler: NodeHandler;
     private _children?:Node<T>[];
     private _parent?:Node<T>;
-    constructor(options: Args<T>) {
-        this._widgetName = options.widgetName;
-        this._value = options.value;
-        this._id = options.id || uuidv4();
+
+    constructor({widgetName, value, id = uuidv4(), handler = defaultHandler}: Args<T> = {widgetName:'', value:{} as T}) {
+        this._widgetName = widgetName;
+        this._value = value;
+        this._id = id;
+        this._handler = handler;
         this._active = false;
-        this._handler = options.handler || defaultHandler;
     }
     get id() {
         return this._id;
