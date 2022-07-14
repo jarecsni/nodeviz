@@ -8,8 +8,6 @@
     <ul>
         <slot name="children">
             <slot>
-                <TreeLeaf>Leaf element missing</TreeLeaf>
-                <TreeLeaf>Leaf element missing</TreeLeaf>
             </slot>
         </slot>
     </ul>
@@ -20,7 +18,6 @@
 </script>
 
 <script lang="ts">
-    import TreeLeaf from "./TreeLeaf.svelte";
     export let rootContent: string = "Root element missing";
     export let defaultClosed: boolean = false;
     let inputId = "input_" + counter++;

@@ -1,8 +1,12 @@
 <li>
-    <span class="tree_label">
+    <span class="tree_label" on:click={onClick}>
         <slot />
     </span>
 </li>
+
+<script>
+    export let onClick = () => {};
+</script>
 
 <style>
     li {
