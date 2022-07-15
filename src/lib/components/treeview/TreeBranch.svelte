@@ -1,102 +1,141 @@
-<li>
-    <input type="checkbox" checked={!defaultClosed} id={inputId} />
-    <label class="tree_label" for={inputId}>
-        <slot name="root">
-            {rootContent}
-        </slot>
-    </label>
-    <ul>
-        <slot name="children">
-            <slot>
-            </slot>
-        </slot>
-    </ul>
-</li>
-
 <script context="module">
-    let counter = 0;
+	let counter = 0;
 </script>
 
 <script lang="ts">
-    export let rootContent: string = "Root element missing";
-    export let defaultClosed: boolean = false;
-    let inputId = "input_" + counter++;
+	export let rootContent: string = 'Root element missing';
+	export let defaultClosed: boolean = false;
+	let inputId = 'input_' + counter++;
 </script>
 
+<li>
+	<input
+		id={inputId}
+        name={inputId}
+		class="css-checkbox"
+		type="checkbox"
+		checked={!defaultClosed}
+		on:click={() => {
+			console.log('check clicked');
+		}}
+	/>
+	<label for={inputId} class="css-label">
+		<span class="fa fa-plus" />
+		<span class="fa fa-minus" />
+	</label>
+	<span
+		class="tree_label"
+		on:click={() => {
+			console.log('label clicked');
+		}}
+	>
+		<slot name="root">
+			{rootContent}
+		</slot>
+	</span>
+	<ul>
+		<slot name="children">
+			<slot />
+		</slot>
+	</ul>
+</li>
+
 <style>
-    /* ————————————————————–
+	/* ————————————————————–
     Tree core styles
     */
-    input {
-        position: absolute;
-        clip: rect(0, 0, 0, 0);
-    }
-    input ~ ul {
-        display: none;
-    }
-    input:checked ~ ul {
-        display: block;
-    }
+	input {
+		position: absolute;
+		left: -18px;
+		top: 14px;
+		z-index: 10;
+	}
+	input ~ ul {
+		display: none;
+	}
+	input:checked ~ ul {
+		display: block;
+	}
 
-    /* ————————————————————–
+	/* ————————————————————–
     Tree rows
     */
-    li {
-        line-height: 1.2;
-        position: relative;
-        padding: 0 0 1em 1em;
-    }
+	li {
+		line-height: 1.2;
+		position: relative;
+		padding: 0 0 1em 1em;
+	}
 
-    /* ————————————————————–
+	/* ————————————————————–
     Tree labels
     */
-    .tree_label {
-        position: relative;
-        display: inline-block;
+	.tree_label {
+		position: relative;
+		display: inline-block;
 
-        cursor: pointer;
-    }
+		cursor: pointer;
+	}
 
-    .tree_label:hover {
-        color: var(--branch-hover-color);
-    }
+	.tree_label:hover {
+		color: var(--branch-hover-color);
+	}
 
-    /* ————————————————————–
+	/* ————————————————————–
     Tree expanded icon
     */
-    .tree_label:before {
-        background: var(--icon-background-color);
-        color: var(--icon-color);
-        position: relative;
-        z-index: 1;
-        float: left;
-        margin: 0 1em 0 -2em;
-        width: 1em;
-        height: 1em;
-        border-radius: 1em;
-        content: "+";
-        text-align: center;
-        line-height: 0.9em;
-    }
-    :checked ~ .tree_label:before {
-        content: "–";
-    }
+	.tree_label:before {
+		background: var(--icon-background-color);
+		color: var(--icon-color);
+		position: relative;
+		z-index: 1;
+		float: left;
+		margin: 0 1em 0 -2em;
+		width: 1em;
+		height: 1em;
+		border-radius: 1em;
+		content: '+';
+		text-align: center;
+		line-height: 0.9em;
+	}
+	:checked ~ .tree_label:before {
+		content: '–';
+	}
 
-    /* ————————————————————–
+	/* ————————————————————–
     Tree branches
     */
-    .tree_label:after {
-        border-bottom: 0;
-    }
+	.tree_label:after {
+		border-bottom: 0;
+	}
 
-    :checked ~ label.tree_label:after {
-        border-radius: 0 0.3em 0 0;
-        border-top: 2px solid var(--line-color);
-        border-right: 2px solid var(--line-color);
-        border-bottom: 0;
-        border-left: 0;
-        bottom: 0;
-        top: 0.5em;
-        height: auto;
-    }
+	.css-label {
+		cursor: pointer;
+	}
+	.css-checkbox {
+		display: none;
+	}
+	.fa {
+		color: white;
+		line-height: 16px;
+		border-radius: 4px;
+	}
+	.fa-plus {
+		padding-top: 2px;
+		padding-right: 2px;
+		padding-left: 2px;
+		background-color: #3ac5c9;
+	}
+	.fa-minus {
+		padding-top: 1px;
+		padding-right: 2px;
+		padding-left: 2px;
+		background-color: #e85764;
+		display: none;
+	}
+	.css-checkbox:checked + .css-label .fa-minus {
+		display: inline;
+	}
+	.css-checkbox:checked + .css-label .fa-plus {
+		display: none;
+	}
 </style>
