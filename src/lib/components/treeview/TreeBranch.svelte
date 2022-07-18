@@ -72,7 +72,6 @@
 	.tree_label {
 		position: relative;
 		display: inline-block;
-
 		cursor: pointer;
 	}
 
@@ -110,6 +109,9 @@
 
 	.css-label {
 		cursor: pointer;
+		position: absolute;
+    	left: -17px;
+    	z-index: 5;
 	}
 	.css-checkbox {
 		display: none;
@@ -123,13 +125,13 @@
 		padding-top: 2px;
 		padding-right: 2px;
 		padding-left: 2px;
-		background-color: #3ac5c9;
+		background-color: gray;
 	}
 	.fa-minus {
 		padding-top: 1px;
 		padding-right: 2px;
 		padding-left: 2px;
-		background-color: #e85764;
+		background-color: gray;
 		display: none;
 	}
 	.css-checkbox:checked + .css-label .fa-minus {
@@ -138,4 +140,5 @@
 	.css-checkbox:checked + .css-label .fa-plus {
 		display: none;
 	}
+
 </style>
