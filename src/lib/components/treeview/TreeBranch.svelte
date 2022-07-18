@@ -107,6 +107,17 @@
 		border-bottom: 0;
 	}
 
+	:global(:checked ~ span).tree_label:after {
+        border-radius: 0 0.3em 0 0;
+        border-top: 2px solid var(--line-color);
+        border-right: 2px solid var(--line-color);
+        border-bottom: 0;
+        border-left: 0;
+        bottom: 0;
+        top: 0.5em;
+        height: auto;
+    }
+
 	.css-label {
 		cursor: pointer;
 		position: absolute;
