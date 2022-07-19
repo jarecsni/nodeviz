@@ -20,8 +20,8 @@
 		}}
 	/>
 	<label for={inputId} class="css-label">
-		<span class="fa fa-plus" />
-		<span class="fa fa-minus" />
+		<span class="fa fa-plus fa-1" />
+		<span class="fa fa-minus fa-1" />
 	</label>
 	<span
 		class="tree_label"
@@ -65,6 +65,9 @@
 		position: relative;
 		padding: 0 0 1em 1em;
 	}
+	li {
+    	list-style-type: none;
+	}
 
 	/* ————————————————————–
     Tree labels
@@ -79,26 +82,6 @@
 		color: var(--branch-hover-color);
 	}
 
-	/* ————————————————————–
-    Tree expanded icon
-    */
-	.tree_label:before {
-		background: var(--icon-background-color);
-		color: var(--icon-color);
-		position: relative;
-		z-index: 1;
-		float: left;
-		margin: 0 1em 0 -2em;
-		width: 1em;
-		height: 1em;
-		border-radius: 1em;
-		content: '+';
-		text-align: center;
-		line-height: 0.9em;
-	}
-	:checked ~ .tree_label:before {
-		content: '–';
-	}
 
 	/* ————————————————————–
     Tree branches
@@ -128,21 +111,24 @@
 		display: none;
 	}
 	.fa {
-		color: white;
-		line-height: 16px;
-		border-radius: 4px;
+		background: var(--icon-background-color);
+		color: var(--icon-color);
+		position: relative;
+		left: 34px;
+		top: 1px;
+		z-index: 1;
+		float: left;
+		margin: 0 1em 0 -2em;
+		width: 1em;
+		height: 1em;
+		border-radius: 1em;
+		text-align: center;
+		line-height: 0.9em;
+		width: 15px;
+		height: 15px;
 	}
-	.fa-plus {
-		padding-top: 2px;
-		padding-right: 2px;
-		padding-left: 2px;
-		background-color: gray;
-	}
+
 	.fa-minus {
-		padding-top: 1px;
-		padding-right: 2px;
-		padding-left: 2px;
-		background-color: gray;
 		display: none;
 	}
 	.css-checkbox:checked + .css-label .fa-minus {
