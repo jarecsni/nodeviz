@@ -20,8 +20,8 @@
 		}}
 	/>
 	<label for={inputId} class="css-label">
-		<span class="fa fa-plus fa-1" />
-		<span class="fa fa-minus fa-1" />
+		<span class="fa fa-plus fa-xs" />
+		<span class="fa fa-minus fa-xs" />
 	</label>
 	<span
 		class="tree_label"
@@ -104,7 +104,7 @@
 	.css-label {
 		cursor: pointer;
 		position: absolute;
-    	left: -17px;
+    	left: -25px;
     	z-index: 5;
 	}
 	.css-checkbox {
@@ -123,7 +123,7 @@
 		height: 1em;
 		border-radius: 1em;
 		text-align: center;
-		line-height: 0.9em;
+		line-height: 1.3em;
 		width: 15px;
 		height: 15px;
 	}
