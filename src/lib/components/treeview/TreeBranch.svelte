@@ -20,8 +20,8 @@
 		}}
 	/>
 	<label for={inputId} class="css-label">
-		<span class="fa fa-plus fa-1" />
-		<span class="fa fa-minus fa-1" />
+		<span class="fa fa-plus fa-xs" />
+		<span class="fa fa-minus fa-xs" />
 	</label>
 	<span
 		class="tree_label"
@@ -114,7 +114,7 @@
 		background: var(--icon-background-color);
 		color: var(--icon-color);
 		position: relative;
-		left: 34px;
+		left: 26px;
 		top: 1px;
 		z-index: 1;
 		float: left;
@@ -123,7 +123,7 @@
 		height: 1em;
 		border-radius: 1em;
 		text-align: center;
-		line-height: 0.9em;
+		line-height: 1.3em;
 		width: 15px;
 		height: 15px;
 	}
