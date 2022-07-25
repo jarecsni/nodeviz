@@ -104,7 +104,7 @@
 	.css-label {
 		cursor: pointer;
 		position: absolute;
-    	left: -17px;
+    	left: -25px;
     	z-index: 5;
 	}
 	.css-checkbox {
