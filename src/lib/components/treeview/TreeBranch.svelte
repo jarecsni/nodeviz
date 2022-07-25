@@ -114,7 +114,7 @@
 		background: var(--icon-background-color);
 		color: var(--icon-color);
 		position: relative;
-		left: 26px;
+		left: 34px;
 		top: 1px;
 		z-index: 1;
 		float: left;
