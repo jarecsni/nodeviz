@@ -18,6 +18,11 @@
     .tree_label {
         position: relative;
         display: inline-block;
+        cursor: pointer;
     }
+
+    .tree_label:hover {
+		color: var(--branch-hover-color);
+	}
 
 </style>

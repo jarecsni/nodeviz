@@ -5,6 +5,7 @@
 <script lang="ts">
 	export let rootContent: string = 'Root element missing';
 	export let defaultClosed: boolean = false;
+	export let onClick = () => {};
 	let inputId = 'input_' + counter++;
 </script>
 
@@ -15,9 +16,6 @@
 		class="css-checkbox"
 		type="checkbox"
 		checked={!defaultClosed}
-		on:click={() => {
-			console.log('check clicked');
-		}}
 	/>
 	<label for={inputId} class="css-label">
 		<span class="fa fa-plus fa-xs" />
@@ -25,9 +23,7 @@
 	</label>
 	<span
 		class="tree_label"
-		on:click={() => {
-			console.log('label clicked');
-		}}
+		on:click={onClick}
 	>
 		<slot name="root">
 			{rootContent}
@@ -81,7 +77,6 @@
 	.tree_label:hover {
 		color: var(--branch-hover-color);
 	}
-
 
 	/* ————————————————————–
     Tree branches
