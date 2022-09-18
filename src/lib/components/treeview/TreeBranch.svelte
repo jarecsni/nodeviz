@@ -6,6 +6,7 @@
 	export let rootContent: string = 'Root element missing';
 	export let defaultClosed: boolean = false;
 	export let onClick = () => {};
+	export let selected;
 	let inputId = 'input_' + counter++;
 </script>
 
@@ -23,6 +24,7 @@
 	</label>
 	<span
 		class="tree_label"
+		class:selected
 		on:click={onClick}
 	>
 		<slot name="root">
@@ -132,5 +134,7 @@
 	.css-checkbox:checked + .css-label .fa-plus {
 		display: none;
 	}
-
+	.selected {
+		border: 1px dotted;
+	}
 </style>

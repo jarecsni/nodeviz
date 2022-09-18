@@ -1,11 +1,12 @@
 <li>
-    <span class="tree_label" on:click={onClick}>
+    <span class="tree_label" class:selected on:click={onClick}>
         <slot />
     </span>
 </li>
 
 <script>
     export let onClick = () => {};
+    export let selected = false;
 </script>
 
 <style>
@@ -24,5 +25,9 @@
     .tree_label:hover {
 		color: var(--branch-hover-color);
 	}
+
+    .selected {
+        border: 1px dotted;
+    }
 
 </style>
