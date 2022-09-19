@@ -18,6 +18,7 @@ const defaultHandler = {
 interface Args<T> {
     widgetName: string
     value: T
+    index: number
     id?: string
     handler?: NodeHandler
 }
@@ -28,19 +29,24 @@ export class Node<T extends object> {
     private _widgetName:string;
     private _value:T;
     private _id:string;
+    private _index:number;
     private _handler: NodeHandler;
     private _children?:Node<T>[];
     private _parent?:Node<T>;
 
-    constructor({widgetName, value, id = uuidv4(), handler = defaultHandler}: Args<T> = {widgetName:'', value:{} as T}) {
+    constructor({widgetName, value, index, id = uuidv4(), handler = defaultHandler}: Args<T>) {
         this._widgetName = widgetName;
         this._value = value;
         this._id = id;
+        this._index = index;
         this._handler = handler;
         this._active = false;
     }
     get id() {
         return this._id;
+    }
+    get index() {
+        return this._index;
     }
     get widgetName() {
         return this._widgetName;
@@ -85,7 +91,7 @@ export class Node<T extends object> {
 }
 
 export function convertJSON<T extends object>(json:NodeObj, parentNode?:Node<T>):Node<T> {
-    const currentNode = new Node<T>({widgetName: json.widgetName, value: json.value as T});
+    const currentNode = new Node<T>({widgetName: json.widgetName, value: json.value as T, index: 0});
     currentNode.parent = parentNode;
     if (json.children && json.children.length > 0) {
         json.children.forEach(child => {
