@@ -31,6 +31,7 @@ export class Node<T extends object> {
     private _handler: NodeHandler;
     private _children?:Node<T>[];
     private _parent?:Node<T>;
+    private _config?:unknown
 
     constructor({widgetName, value, id = uuidv4(), handler = defaultHandler}: Args<T> = {widgetName:'', value:{} as T}) {
         this._widgetName = widgetName;
@@ -81,6 +82,12 @@ export class Node<T extends object> {
         }
         child.parent = this;
         this._children.push(child);
+    }
+    get config() {
+        return this._config;
+    }
+    set config(configObject: unknown) {
+        this._config = configObject;
     }
 }
 

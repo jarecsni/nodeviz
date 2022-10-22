@@ -1,6 +1,6 @@
 {
   "name": "nodeviz",
-  "version": "0.4.5",
+  "version": "0.5.1",
   "description": "A node graph based UI framework",
   "author": "Johnny Jarecsni <johnny.jarecsni@icloud.com>",
   "license": "BSD-3-Clause",
