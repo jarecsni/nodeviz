@@ -7,20 +7,29 @@ export type NodeObj = {
     children?: NodeObj[]
 }
 
-export interface NodeHandler {
-    isVisible(node:Node<object>):boolean;
+export type ManagementAction<T extends object> = {
+    iconName:string
+    label?:string
+    tooltip?:string
+    callback(node:Node<T>):void
+}
+
+export interface NodeHandler<T extends object> {
+    isVisible(node:Node<T>):boolean;
+    getManagementActions(node:Node<T>): ManagementAction<T>[]
 }
 
 const defaultHandler = {
-    isVisible: () => true
+    isVisible: () => true,
+    getManagementActions: () => []
 }
 
-interface Args<T> {
+interface Args<T extends object> {
     widgetName: string
     value: T
     index: number
     id?: string
-    handler?: NodeHandler
+    handler?: NodeHandler<T>
 }
 
 export class Node<T extends object> {
@@ -30,7 +39,7 @@ export class Node<T extends object> {
     private _value:T;
     private _id:string;
     private _index:number;
-    private _handler: NodeHandler;
+    private _handler: NodeHandler<T>;
     private _children?:Node<T>[];
     private _parent?:Node<T>;
     private _config?:unknown
