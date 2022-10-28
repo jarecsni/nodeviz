@@ -64,8 +64,11 @@ export class Node<T extends object> {
     get active() {
         return this._active;
     }
-    getHandler() {
+    get handler() {
         return this._handler;
+    }
+    set handler(handler: NodeHandler<T>) {
+        this._handler = handler;
     }
     set active(active:boolean) {
         this._active = active;
